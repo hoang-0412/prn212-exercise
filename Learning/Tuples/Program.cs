@@ -76,6 +76,35 @@ public class Tuples
         //Local function kiem tra so le
         bool IsOddNumber(int x) => x % 2 != 0;
     }
+    static (long sumSquaresPrime, int countPrime) ThongKeSoNguyenTo(int[] values)
+    {
+        var result = (sumSquaresPrime: 0L, countPrime: 0);
+
+        foreach (int n in values)
+        {
+            if (IsPrime(n))
+            {
+                result.sumSquaresPrime += (long)n * n;
+                result.countPrime++;
+            }
+        }
+        return result;
+
+        //Local function kiem tra so nguyen to
+        bool IsPrime(int x)
+        {
+            if (x < 2) return false;
+            if (x == 2 || x == 3) return true;
+            if (x % 2 == 0 || x % 3 == 0) return false;
+
+            for (int i = 5; i * i <= x; i += 6)
+            {
+                if (x % i == 0 || x % (i + 2) == 0)
+                    return false;
+            }
+            return true;
+        }
+    }
     static void Main(string[] args)
     {
         int[] numbers = { 2, 1, 5, 6, 3, 4, 7, 8, 10, 9 };
@@ -90,8 +119,10 @@ public class Tuples
         var (tichSoLe, soLuongLeLonHon3) = ThongKeSoLe(numbers);
         Console.WriteLine($"Tich cac so le: {tichSoLe}");
         Console.WriteLine($"So luong so le > 3: {soLuongLeLonHon3}");
-
+        //Tong binh phuong so nguyen to, so luong so nguyen to
+        var (tongBinhPhuongNT, soLuongNT) = ThongKeSoNguyenTo(numbers);
+        Console.WriteLine($"Tong binh phuong so nguyen to: {tongBinhPhuongNT}");
+        Console.WriteLine($"So luong so nguyen to: {soLuongNT}");
         Console.ReadLine();
     }
-    //Tong binh phuong so nguyen to, so luong so nguyen to
 }
