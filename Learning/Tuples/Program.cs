@@ -32,4 +32,9 @@ public class Tuples
         Console.WriteLine($"Sum: {sum}, Count: {count}");
         Console.ReadLine();
     }
+
+    //Su dung bien tuple de thong ke cho 1 mang so nguyen:
+    //Tong so chan, so luong so chan
+    //Tong so le, so luong so le > 3
+    //Tong binh phuong so nguyen to, so luong so nguyen to
 }
